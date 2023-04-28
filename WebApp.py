@@ -26,3 +26,13 @@ df_countries.to_sql("countries", connection, if_exists = "replace")
 
 connection.close()
 
+connection = sqlite3.connect("ecsel_database.db")
+
+df_countries = pd.read_sql("SELECT * FROM countries", connection)
+
+connection.close()
+
+country_dict = dict(zip(df_countries["Acronym"], df_countries["Country"]))
+
+
+st.write(df_countries)
